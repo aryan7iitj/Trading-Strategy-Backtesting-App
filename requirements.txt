@@ -1,0 +1,4 @@
+backtesting
+streamlit
+pandas
+matplotlib
