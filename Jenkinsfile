@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    docker.build(DOCKER_IMAGE)
+                    bat 'docker build -t %DOCKER_IMAGE% .'
                 }
             }
         }
