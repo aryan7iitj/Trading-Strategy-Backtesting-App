@@ -8,18 +8,30 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t aryaniitj7/trading-strategy-backtesting .'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat 'docker build -t aryaniitj7/trading-strategy-backtesting .'
+                }
             }
         }
         stage('Login') {
             steps {
-                bat 'docker login'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat 'docker login'
+                }
             }
         }
         stage('Push Docker Image') {
             steps {
-                bat 'docker push aryaniitj7/trading-strategy-backtesting'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    bat 'docker push aryaniitj7/trading-strategy-backtesting'
+                }
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed'
         }
     }
 }
