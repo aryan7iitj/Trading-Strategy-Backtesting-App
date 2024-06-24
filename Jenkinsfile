@@ -13,11 +13,19 @@ pipeline {
                 }
             }
         }
-        stage('Login') {
+        stage('Login to Docker Hub') {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'Docker_Login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        // Debugging lines to ensure credentials are loaded
+                        bat 'echo DOCKER_USERNAME=%DOCKER_USERNAME%'
+                        bat 'echo DOCKER_PASSWORD=%DOCKER_PASSWORD:~0,2%*****'
+                        
+                        // Attempt login
                         bat 'echo %DOCKER_PASSWORD% | docker login -u %DOCKER_USERNAME% --password-stdin'
+                        
+                        // Check login status
+                        bat 'docker info'
                     }
                 }
             }
