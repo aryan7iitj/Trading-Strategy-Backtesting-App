@@ -24,9 +24,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    bat 'docker push aryaniitj7/trading-strategy-backtesting'
-                }
+                bat 'docker push aryaniitj7/trading-strategy-backtesting'    
             }
         }
     }
