@@ -8,7 +8,17 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t backtesting-app . --progress=plain --no-cache'
+                bat 'docker build -t aryaniitj7/trading-strategy-backtesting .'
+            }
+        }
+        stage('Login') {
+            steps {
+                bat 'docker login'
+            }
+        }
+        stage('Push Docker Image') {
+            steps {
+                bat 'docker push aryaniitj7/trading-strategy-backtesting'
             }
         }
     }
