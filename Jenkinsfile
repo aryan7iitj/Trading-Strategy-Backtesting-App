@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build Docker Image') {
             steps {
-                bat 'docker build .'
+                bat 'docker build -t backtesting-app .'
             }
         }
     }
