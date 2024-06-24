@@ -1,9 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:20.14.0'
-        }
+    agent any
+
+    environment {
+        PATH = "C:\\Windows\\System32;${env.PATH}"
     }
+
     stages {
         stage('Test') {
             steps {
