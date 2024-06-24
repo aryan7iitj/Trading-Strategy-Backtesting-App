@@ -19,7 +19,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'Docker_Login', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         // Debugging lines to ensure credentials are loaded
                         bat 'echo DOCKER_USERNAME=%DOCKER_USERNAME%'
-                        bat 'echo DOCKER_PASSWORD=%DOCKER_PASSWORD'
+                        bat 'echo DOCKER_PASSWORD=%DOCKER_PASSWORD%'
                         
                         // Attempt login
                         bat 'echo %DOCKER_PASSWORD% | docker login -u %DOCKER_USERNAME% --password-stdin'
